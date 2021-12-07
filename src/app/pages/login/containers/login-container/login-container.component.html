@@ -1,0 +1,35 @@
+<div>
+  <div>
+    <app-header></app-header> 
+  </div>
+
+  <div style="display:flex;justify-content:center">
+    <div style="width:300px;margin-top:50px">
+      <div class="card" style="padding:20px">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <h2>{{ 'PAGES.LOGIN.CONTAINERS.login-container.title' | translate}}</h2>
+            <div *ngIf="loginInvalid">
+              The username and password were not recognised
+            </div>
+            <div class="mb-3">
+              <input class="form-control" placeholder="Email" type="text" id="login-email" formControlName="email" required>
+              <div style="color:red" *ngIf="form.get('email').invalid && form.get('email').touched">
+                Please provide a valid email address 
+              </div>
+            </div>
+            <div class="full-width-input">
+              <input class="form-control" type="password" placeholder="Password" formControlName="password" required>
+              <div style="color:red" *ngIf="form.get('password').invalid && form.get('password').touched">
+                Please provide a valid password
+              </div>
+              <div *ngFor="let error of errorApi"> {{error}} </div>
+            </div>
+            <br>
+            <button  type="button" class="btn btn-primary" (click)="onSubmit()">Login</button>
+          </form>
+          <p style="margin-top:30px">Demo login, write any email and any password for login</p>
+      </div>
+    </div>
+  </div>
+
+</div>
